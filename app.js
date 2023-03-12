@@ -9,4 +9,5 @@ console.log(data);
 //console.log(Names);
 sayHi(Names.john)
 sayHi(Names.peter)
+sayHi(data.singlePerson.name)
 
