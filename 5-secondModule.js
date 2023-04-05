@@ -1,6 +1,6 @@
 //functions
 
-const sayHi = (name) =>{
+const sayHi = (name) => {
     console.log(`The name is ${name}`);
 }
 
