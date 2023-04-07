@@ -1,15 +1,27 @@
-//npm is node package manager
-// npm -global command
-// npm --v     verison command
-
-
-// nmp init -y             this command is for creating package.json file
-// npm i <package name>    this command is for installing a new package
-
-const _ = require('lodash')
-
-const first = [1,[8,[0,[9]]]]
-
-const second = _.flattenDeep(first)
-
-console.log(second)
+const {readFile , writeFile} = require('fs');
+const utils = require('util')
+const readfilePromise = utils.promisify(readFile)
+const writefilePromise = utils.promisify(writeFile)
+const getText = (path) =>{
+    return new Promise ((resolve,reject)=>{
+        readFile(path , 'utf-8' , (err , data)=>{
+            if (err){
+                reject(err);
+            }else {
+                resolve(data);
+            }
+        })
+    })
+}
+const start = async() =>{
+    try {
+        const first = await readfilePromise('./folder/first.txt' , 'utf8')
+        const second = await readfilePromise('./folder/first.txt' , 'utf8')
+        await writefilePromise('./folder/writefilepromisemindgrenade.txt' ,
+         `THIS IS AWESOME: ${first} ${second}`)
+    } catch (error) {
+        console.log(error);
+    }
+}
+start();
+// getText('./folder/first.txt').then((res)=>{console.log(res)}).catch((err) =>{console.log(err);})
